@@ -51,6 +51,13 @@ public class ClubController {
         return "redirect:/clubs";
     }
 
+    @GetMapping("/Clubs/search")
+    Public String serachClub(@RequestParam(value="query") String query, Model model){
+        List<ClubDto> clubs = clubService.searchClubs(query);
+        model.addAttribute("clubs",clubs);
+        return "clubs-list";
+    }
+
     @PostMapping("/clubs/new")
     public String saveClub(@Valid @ModelAttribute("club") ClubDto clubDto,
                            BindingResult bindingResult,
