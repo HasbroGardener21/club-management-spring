@@ -20,8 +20,13 @@ public class AuthController {
     public AuthController(UserService userService) {
         this.userService = userService;
     }
+    @GetMapping("/login")
+    public String loginpage(){
+        return "login";
+    }
+    
 
-    @GetMapping
+    @GetMapping("/register")
     public String getRegisterForm(Model model) {
         model.addAttribute("user", new RegistrationDto());
         return "register";
