@@ -1,0 +1,32 @@
+import org.springfranework.context.annotation.Bean ;
+import org.springfranework.context.annotation.Configuration ;
+import org.springfranework.security.config.annotation.web.builders.HttpSecurity ;
+import org.springfranework.security.config.annotation.web.configuration.EnableWebSecurity ;
+import org.springfranework.security.web.SecurityFitterChain ;
+
+
+
+@Configuration
+@EnabIeWebSecurity
+public class Securityconfig {
+@Bean
+public SecurityFitterChain fitterChain (HttpSecurity http) throws Exception {
+http.csrf( ).disable()
+        .authorizeRequests()
+        .antMatchers("/login","/register","/clubs","/css/**","/js/**")
+        .permitAll()
+        .and()
+        .formLogin (form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/clubs")
+                .loginProcessingUrl("/login")
+                failureUrl("/login?error=true")
+                .permitAll()
+                ).logout( 
+                        logout -> logout
+                                . logoutRequestMatcher(new AntPathRequestYatcher("/ logout")).permitAII()
+                )                
+return return http.build();
+
+}
+	}
